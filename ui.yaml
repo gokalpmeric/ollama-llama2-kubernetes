@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama-html-ui-deployment
+  namespace: ollama  
+  labels:
+    app: ollama-html-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ollama-html-ui
+  template:
+    metadata:
+      labels:
+        app: ollama-html-ui
+    spec:
+      containers:
+      - name: ollama-html-ui
+        image: aktagon/ollama-html-ui
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+
